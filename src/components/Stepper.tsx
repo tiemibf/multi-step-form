@@ -33,7 +33,7 @@ export const Stepper = () => {
     const activeStep = step.current.count;
 
     return (
-        <div className="flex">
+        <div className="flex flex-1 w-full">
             <div>
                 {stepsInfo?.map((step) => (
                     <Step
@@ -44,8 +44,9 @@ export const Stepper = () => {
                     />
                 ))}
             </div>
-
-            {step.current.content && <div>{step.current.content}</div>}
+            <div className="">
+                {step.current.content && <div>{step.current.content}</div>}
+            </div>
         </div>
     );
 };
