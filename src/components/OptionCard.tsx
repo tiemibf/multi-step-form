@@ -20,12 +20,13 @@ export const OptionCard = ({
 }: IOptionCardProps) => {
     const pricePerTime = planOption === "monthly" ? "/mo" : "/yr";
     return (
-        <div className="border border-[#D6D9E6] rounded-lg w-[138px] h-40  px-4 pt-5 pb-4 items-stretch">
-            <div className="h-full">
+        <div className="border border-ms-light-grey rounded-lg w-[138px] h-40 px-4 py-5">
+            <div className="h-full flex flex-col justify-between">
                 <Icon color={color} icon={icon} />
+
                 <div className="footer">
                     <p>{title}</p>
-                    <p className="font-normal text-[15px] whitespace-no-wrap text-[#9699AA] leading-7 ">
+                    <p className="font-normal text-[15px] whitespace-no-wrap text-ms-grey leading-7 ">
                         {price}
                         {pricePerTime}
                     </p>
