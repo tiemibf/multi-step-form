@@ -1,9 +1,12 @@
+"use client";
+
 import { AdvancedIcon } from "@/assets/AdvancedIcon";
 import { ArcadeIcon } from "@/assets/ArcadeIcon";
 import { ProIcon } from "@/assets/ProIcon";
 import { OptionCard } from "@/components/OptionCard";
 import { PageTitle } from "@/components/PageTitle";
-import { randomUUID } from "crypto";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const planOptions = [
     {
@@ -29,6 +32,12 @@ const planOptions = [
     }
 ];
 export const SelectPlanPage = () => {
+    const [selectedPlanOption, setSelectedPlanOption] = useState("");
+
+    const handleOptionCardClick = (planOption: string) => {
+        setSelectedPlanOption(planOption);
+    };
+
     return (
         <div className="w-full">
             <div className="page-title flex-1 w-full mb-8">
@@ -44,8 +53,10 @@ export const SelectPlanPage = () => {
                         icon={planOption.icon}
                         price={planOption.priceMonthly}
                         title={planOption.title}
-                        key={randomUUID()}
+                        key={uuidv4()}
                         planOption="monthly"
+                        isSelected={selectedPlanOption === planOption.title}
+                        onClick={() => handleOptionCardClick(planOption.title)}
                     />
                 ))}
             </div>

@@ -1,5 +1,3 @@
-// { icon, color, price, title }: IOptionCardProps
-
 import { Icon } from "./Icon";
 
 interface IOptionCardProps {
@@ -9,18 +7,31 @@ interface IOptionCardProps {
     title: string;
     planOption: "monthly" | "yearly";
     benefits?: string;
+    isSelected: boolean;
+    onClick: () => void;
 }
+
 export const OptionCard = ({
     icon,
     color,
     price,
     title,
     planOption,
-    benefits
+    isSelected,
+    benefits,
+    onClick
 }: IOptionCardProps) => {
     const pricePerTime = planOption === "monthly" ? "/mo" : "/yr";
+
     return (
-        <div className="border border-ms-light-grey rounded-lg w-[138px] h-40 px-4 py-5">
+        <div
+            className={`border border-ms-light-grey rounded-lg w-[138px] h-40 px-4 py-5 hover:border-ms-purple hover:border-2 ${
+                isSelected
+                    ? "bg-ms-lightest-grey border-ms-purple border-2"
+                    : ""
+            }`}
+            onClick={onClick}
+        >
             <div className="h-full flex flex-col justify-between">
                 <Icon color={color} icon={icon} />
 
