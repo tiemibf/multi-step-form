@@ -7,6 +7,7 @@ import { OptionCard } from "@/components/OptionCard";
 import { PageTitle } from "@/components/PageTitle";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { PlanToggle } from "./components/PlanToggle";
 
 const planOptions = [
     {
@@ -60,6 +61,7 @@ export const SelectPlanPage = () => {
                     />
                 ))}
             </div>
+            <PlanToggle />
         </div>
     );
 };
