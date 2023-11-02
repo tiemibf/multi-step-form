@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { PageTitle } from "@/components/PageTitle";
 
@@ -23,7 +22,6 @@ export const PersonalInfoPage = () => {
                 name="phone"
                 placeholder="e.g. +1 234 567 890"
             />
-            <Button>Next Step</Button>
         </div>
     );
 };

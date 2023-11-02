@@ -1,6 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { PersonalInfoPage } from "@/pages/PersonalInfo";
+import { SelectPlanPage } from "@/pages/SelectPlan/SelectPlan";
+import { useState } from "react";
+import { Button } from "./Button";
 import { Step } from "./Step";
 
 type StepsInfo = {
@@ -12,11 +15,13 @@ type StepsInfo = {
 const stepsInfo: StepsInfo[] = [
     {
         count: 1,
-        name: "Your Info"
+        name: "Your Info",
+        content: <PersonalInfoPage />
     },
     {
         count: 2,
-        name: "Select Plan"
+        name: "Select Plan",
+        content: <SelectPlanPage />
     },
     {
         count: 3,
@@ -29,23 +34,36 @@ const stepsInfo: StepsInfo[] = [
 ];
 
 export const Stepper = () => {
-    const step = useRef(stepsInfo[0]);
-    const activeStep = step.current.count;
+    const [currentStep, setCurrentStep] = useState(1);
+    const isLastStep = currentStep === stepsInfo.length;
+    const goToNextStep = () => {
+        setCurrentStep((curr) => (!isLastStep ? curr + 1 : curr));
+    };
 
     return (
-        <div className="flex flex-1 w-full">
+        <div className="flex flex-1 w-full" style={{ position: "relative" }}>
             <div>
                 {stepsInfo?.map((step) => (
                     <Step
                         stepCount={step.count}
                         stepName={step.name}
                         key={step.count}
-                        isActive={activeStep == step.count ?? false}
+                        isActive={currentStep == step.count ?? false}
+                        onClick={() => setCurrentStep(step.count)}
                     />
                 ))}
             </div>
-            <div className="">
-                {step.current.content && <div>{step.current.content}</div>}
+            <div
+                style={{
+                    position: "absolute",
+                    right: "-615px",
+                    bottom: "-230px"
+                }}
+            >
+                {stepsInfo?.map(
+                    (step) => step.count === currentStep && step.content
+                )}
+                <Button onClick={goToNextStep}>Next Step</Button>
             </div>
         </div>
     );
