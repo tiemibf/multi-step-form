@@ -1,16 +1,25 @@
-import { ActiveStepCounter, InactiveStepCounter } from "./StepCounter";
+import { ActiveStepCounter, InactiveStepCounter } from "../assets/StepCounter";
 
 interface IStepProps extends React.HTMLAttributes<HTMLDivElement> {
     stepCount: number;
     stepName: string;
     isActive?: boolean;
+    onClick: () => void;
 }
 
-export const Step = ({ stepCount, stepName, isActive }: IStepProps) => {
+export const Step = ({
+    stepCount,
+    stepName,
+    isActive,
+    onClick
+}: IStepProps) => {
     const upperCaseName = stepName.toUpperCase();
 
     return (
-        <div className="flex items-center content-start mb-8">
+        <div
+            className="flex items-center content-start mb-8 cursor-pointer"
+            onClick={onClick}
+        >
             <div className="mr-4">
                 {isActive ? (
                     <ActiveStepCounter stepCount={stepCount} />
