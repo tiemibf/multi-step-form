@@ -1,6 +1,6 @@
 "use client";
 
-import { PersonalInfoPage } from "@/pages/PersonalInfo";
+import { PersonalInfoPage } from "@/pages/PersonalInfo/PersonalInfo";
 import { SelectPlanPage } from "@/pages/SelectPlan/SelectPlan";
 import { useState } from "react";
 import { Button } from "./Button";
