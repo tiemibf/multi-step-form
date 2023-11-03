@@ -1,9 +1,13 @@
-import { PersonalInfoPage } from "@/pages/PersonalInfo";
+import { Stepper } from "@/components/Stepper";
 
 export default function Home() {
     return (
-        <div className="flex flex-1 w-full h-full pt-14 px-[100px]">
-            <PersonalInfoPage />
-        </div>
+        <>
+            <aside className="bg-[url('../assets/bg-sidebar.svg')] bg-cover flex w-[274px] h-full rounded-xl pt-10 pl-8 content-start">
+                <div className="mb-8">
+                    <Stepper />
+                </div>
+            </aside>
+        </>
     );
 }

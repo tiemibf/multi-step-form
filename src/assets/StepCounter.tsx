@@ -1,6 +1,7 @@
 interface IStepCounterProps {
     stepCount: number;
 }
+
 export const ActiveStepCounter = ({ stepCount }: IStepCounterProps) => {
     return (
         <>

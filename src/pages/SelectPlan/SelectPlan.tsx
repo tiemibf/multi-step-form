@@ -5,8 +5,10 @@ import { ArcadeIcon } from "@/assets/ArcadeIcon";
 import { ProIcon } from "@/assets/ProIcon";
 import { OptionCard } from "@/components/OptionCard";
 import { PageTitle } from "@/components/PageTitle";
-import { useState } from "react";
+import { FormContext } from "@/context/FormContext";
+import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { PlanToggle } from "./components/PlanToggle";
 
 const planOptions = [
     {
@@ -14,28 +16,42 @@ const planOptions = [
         color: "#FFAF7E",
         priceMonthly: "$9",
         priceYearly: "$90",
-        title: "Arcade"
+        title: "Arcade",
+        benefits: "2 months free"
     },
     {
         icon: <AdvancedIcon />,
         color: "#F9818E",
         priceMonthly: "$12",
         priceYearly: "$120",
-        title: "Advanced"
+        title: "Advanced",
+        benefits: "2 months free"
     },
     {
         icon: <ProIcon />,
         color: "#483EFF",
         priceMonthly: "$15",
         priceYearly: "$150",
-        title: "Pro"
+        title: "Pro",
+        benefits: "2 months free"
     }
 ];
 export const SelectPlanPage = () => {
-    const [selectedPlanOption, setSelectedPlanOption] = useState("");
+    const [checked, setChecked] = useState(false);
+    const { formData, setFormData } = useContext(FormContext);
+    const selectedPlanOption = checked ? "yearly" : "monthly";
 
     const handleOptionCardClick = (planOption: string) => {
-        setSelectedPlanOption(planOption);
+        setFormData({ ...formData, planOption: planOption });
+    };
+
+    const handleToggleChange = () => {
+        setChecked(!checked);
+        const newSelectedPlanOption = !checked ? "yearly" : "monthly";
+        setFormData({
+            ...formData,
+            paymentFrequency: newSelectedPlanOption
+        });
     };
 
     return (
@@ -54,12 +70,14 @@ export const SelectPlanPage = () => {
                         price={planOption.priceMonthly}
                         title={planOption.title}
                         key={uuidv4()}
-                        planOption="monthly"
-                        isSelected={selectedPlanOption === planOption.title}
+                        selectedPlanOption={selectedPlanOption}
+                        benefits={planOption.benefits}
+                        isSelected={formData.planOption === planOption.title}
                         onClick={() => handleOptionCardClick(planOption.title)}
                     />
                 ))}
             </div>
+            <PlanToggle checked={checked} handleChange={handleToggleChange} />
         </div>
     );
 };
