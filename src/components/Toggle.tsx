@@ -1,13 +1,7 @@
+import { IToggleProps } from "@/pages/SelectPlan/components/PlanToggle";
 import { Switch } from "@radix-ui/react-switch";
-import { useState } from "react";
 
-export const Toggle = ({ ...props }) => {
-    const [checked, setChecked] = useState(false);
-
-    const handleChange = () => {
-        setChecked(!checked);
-    };
-
+export const Toggle = ({ checked, handleChange, ...props }: IToggleProps) => {
     return (
         <div className="flex items-center space-x-2" {...props}>
             <Switch

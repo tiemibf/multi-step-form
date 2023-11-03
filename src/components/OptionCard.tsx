@@ -5,23 +5,28 @@ interface IOptionCardProps {
     color: string;
     price: string;
     title: string;
-    planOption: "monthly" | "yearly";
+    selectedPlanOption: "monthly" | "yearly";
     benefits?: string;
     isSelected: boolean;
     onClick: () => void;
 }
+
+const lookUpTable = {
+    monthly: "mo",
+    yearly: "yr"
+};
 
 export const OptionCard = ({
     icon,
     color,
     price,
     title,
-    planOption,
+    selectedPlanOption,
     isSelected,
     benefits,
     onClick
 }: IOptionCardProps) => {
-    const pricePerTime = planOption === "monthly" ? "/mo" : "/yr";
+    const priceLabel = lookUpTable[selectedPlanOption];
 
     return (
         <div
@@ -38,10 +43,13 @@ export const OptionCard = ({
                 <div className="footer">
                     <p>{title}</p>
                     <p className="font-normal text-[15px] whitespace-no-wrap text-ms-grey leading-7 ">
-                        {price}
-                        {pricePerTime}
+                        {price}/{priceLabel}
                     </p>
-                    {planOption === "yearly" && <p>{benefits}</p>}
+                    {selectedPlanOption === "yearly" && (
+                        <p className="font-normal text-xs leading-5">
+                            {benefits}
+                        </p>
+                    )}
                 </div>
             </div>
         </div>

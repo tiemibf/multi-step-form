@@ -18,7 +18,12 @@ const FormContext = createContext<IFormProviderProps>({
 });
 
 const FormProvider = ({ children }: { children: ReactNode }) => {
-    const [formData, setFormData] = useState<IForm>({});
+    const [formData, setFormData] = useState<IForm>({
+        name: "",
+        email: "",
+        phone: "",
+        paymentFrequency: "monthly"
+    });
 
     return (
         <FormContext.Provider value={{ formData, setFormData }}>
