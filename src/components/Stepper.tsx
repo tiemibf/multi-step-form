@@ -1,5 +1,6 @@
 "use client";
 
+import { FormProvider } from "@/context/FormContext";
 import { PersonalInfoPage } from "@/pages/PersonalInfo/PersonalInfo";
 import { SelectPlanPage } from "@/pages/SelectPlan/SelectPlan";
 import { useState } from "react";
@@ -45,44 +46,43 @@ export const Stepper = () => {
     };
 
     return (
-        <div className="flex flex-1 w-full" style={{ position: "relative" }}>
-            <div>
-                {stepsInfo?.map((step) => (
-                    <Step
-                        stepCount={step.count}
-                        stepName={step.name}
-                        key={step.count}
-                        isActive={currentStep == step.count ?? false}
-                        onClick={() => setCurrentStep(step.count)}
-                    />
-                ))}
-            </div>
-            <div
-                style={{
-                    position: "absolute",
-                    right: "-615px",
-                    bottom: "-230px"
-                }}
-            >
-                {stepsInfo?.map(
-                    (step) => step.count === currentStep && step.content
-                )}
-                <div
-                    className={`flex items-center mt-16  ${
-                        isFirstStep ? "justify-end" : "justify-between"
-                    }`}
-                >
-                    {!isFirstStep && (
-                        <p
-                            className="font-medium text-base text-ms-grey cursor-pointer"
-                            onClick={goToPreviousStep}
-                        >
-                            Go Back
-                        </p>
+        <FormProvider>
+            <div className="flex flex-1 w-full relative">
+                <div>
+                    {stepsInfo?.map((step) => (
+                        <Step
+                            stepCount={step.count}
+                            stepName={step.name}
+                            key={step.count}
+                            isActive={currentStep == step.count ?? false}
+                            onClick={() => setCurrentStep(step.count)}
+                        />
+                    ))}
+                </div>
+                <div className="absolute right-[-615px] bottom-[-230px]">
+                    {stepsInfo?.map(
+                        (step) =>
+                            step.count === currentStep && (
+                                <div key={step.count}>{step.content}</div>
+                            )
                     )}
-                    <Button onClick={goToNextStep}>Next Step</Button>
+                    <div
+                        className={`flex items-center mt-16  ${
+                            isFirstStep ? "justify-end" : "justify-between"
+                        }`}
+                    >
+                        {!isFirstStep && (
+                            <p
+                                className="font-medium text-base text-ms-grey cursor-pointer"
+                                onClick={goToPreviousStep}
+                            >
+                                Go Back
+                            </p>
+                        )}
+                        <Button onClick={goToNextStep}>Next Step</Button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </FormProvider>
     );
 };
