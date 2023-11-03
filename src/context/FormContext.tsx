@@ -1,13 +1,24 @@
-import React, { createContext, useState } from "react";
+import { IForm } from "@/types/types";
+import {
+    Dispatch,
+    ReactNode,
+    SetStateAction,
+    createContext,
+    useState
+} from "react";
 
-interface IProps {
-    children: React.ReactNode;
+interface IFormProviderProps {
+    formData: IForm;
+    setFormData: Dispatch<SetStateAction<IForm>>;
 }
 
-const FormContext = createContext({});
+const FormContext = createContext<IFormProviderProps>({
+    formData: {},
+    setFormData: () => null
+});
 
-const FormProvider = ({ children }: IProps) => {
-    const [formData, setFormData] = useState({});
+const FormProvider = ({ children }: { children: ReactNode }) => {
+    const [formData, setFormData] = useState<IForm>({});
 
     return (
         <FormContext.Provider value={{ formData, setFormData }}>

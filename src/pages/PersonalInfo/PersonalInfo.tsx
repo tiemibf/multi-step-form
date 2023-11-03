@@ -1,17 +1,14 @@
 import { Input } from "@/components/Input";
 import { PageTitle } from "@/components/PageTitle";
-import { useState } from "react";
+import { FormContext } from "@/context/FormContext";
+import { useContext } from "react";
 
 export const PersonalInfoPage = () => {
-    const [state, setState] = useState({
-        name: "",
-        email: "",
-        phone: ""
-    });
+    const { formData, setFormData } = useContext(FormContext);
 
-    const handleChange = (event: any) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        setState({ ...state, [event.target.name]: value });
+        setFormData({ ...formData, [event.target.name]: value });
     };
 
     return (
@@ -26,21 +23,21 @@ export const PersonalInfoPage = () => {
             <Input
                 label="Name"
                 name="name"
-                value={state.name}
+                value={formData?.name}
                 onChange={handleChange}
                 placeholder="e.g. Stephen King"
             />
             <Input
                 label="Email Address"
                 name="email"
-                value={state.email}
+                value={formData?.email}
                 onChange={handleChange}
                 placeholder="e.g. stephenking@lorem.com"
             />
             <Input
                 label="Phone Number"
                 name="phone"
-                value={state.phone}
+                value={formData?.phone}
                 onChange={handleChange}
                 placeholder="e.g. +1 234 567 890"
             />
