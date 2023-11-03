@@ -35,9 +35,13 @@ const stepsInfo: StepsInfo[] = [
 
 export const Stepper = () => {
     const [currentStep, setCurrentStep] = useState(1);
+    const isFirstStep = currentStep === 1;
     const isLastStep = currentStep === stepsInfo.length;
     const goToNextStep = () => {
         setCurrentStep((curr) => (!isLastStep ? curr + 1 : curr));
+    };
+    const goToPreviousStep = () => {
+        setCurrentStep((curr) => (!isFirstStep ? curr - 1 : curr));
     };
 
     return (
@@ -63,7 +67,21 @@ export const Stepper = () => {
                 {stepsInfo?.map(
                     (step) => step.count === currentStep && step.content
                 )}
-                <Button onClick={goToNextStep}>Next Step</Button>
+                <div
+                    className={`flex items-center mt-16  ${
+                        isFirstStep ? "justify-end" : "justify-between"
+                    }`}
+                >
+                    {!isFirstStep && (
+                        <p
+                            className="font-medium text-base text-ms-grey cursor-pointer"
+                            onClick={goToPreviousStep}
+                        >
+                            Go Back
+                        </p>
+                    )}
+                    <Button onClick={goToNextStep}>Next Step</Button>
+                </div>
             </div>
         </div>
     );
