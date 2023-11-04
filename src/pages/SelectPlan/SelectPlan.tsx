@@ -3,9 +3,9 @@
 import { AdvancedIcon } from "@/assets/AdvancedIcon";
 import { ArcadeIcon } from "@/assets/ArcadeIcon";
 import { ProIcon } from "@/assets/ProIcon";
-import { OptionCard } from "@/components/OptionCard";
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
+import { OptionCard } from "@/pages/SelectPlan/components/OptionCard";
 import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { PlanToggle } from "./components/PlanToggle";
@@ -37,17 +37,17 @@ const planOptions = [
     }
 ];
 export const SelectPlanPage = () => {
-    const [checked, setChecked] = useState(false);
+    const [toggleChecked, setToggleChecked] = useState(false);
     const { formData, setFormData } = useContext(FormContext);
-    const selectedPlanOption = checked ? "yearly" : "monthly";
+    const selectedPlanOption = toggleChecked ? "yearly" : "monthly";
 
     const handleOptionCardClick = (planOption: string) => {
         setFormData({ ...formData, planOption: planOption });
     };
 
     const handleToggleChange = () => {
-        setChecked(!checked);
-        const newSelectedPlanOption = !checked ? "yearly" : "monthly";
+        setToggleChecked(!toggleChecked);
+        const newSelectedPlanOption = !toggleChecked ? "yearly" : "monthly";
         setFormData({
             ...formData,
             paymentFrequency: newSelectedPlanOption
@@ -77,7 +77,10 @@ export const SelectPlanPage = () => {
                     />
                 ))}
             </div>
-            <PlanToggle checked={checked} handleChange={handleToggleChange} />
+            <PlanToggle
+                checked={toggleChecked}
+                handleChange={handleToggleChange}
+            />
         </div>
     );
 };
