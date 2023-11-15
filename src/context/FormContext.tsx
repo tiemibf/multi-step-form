@@ -22,7 +22,8 @@ const FormProvider = ({ children }: { children: ReactNode }) => {
         name: "",
         email: "",
         phone: "",
-        paymentFrequency: "monthly"
+        paymentFrequency: "monthly",
+        addOns: [""]
     });
 
     return (
