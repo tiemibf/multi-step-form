@@ -20,15 +20,17 @@ export const OptionCard = ({
         <SelectableCard
             isSelected={isSelected}
             onClick={onClick}
-            className="w-full h-21 px-6 py-[18px]"
+            className="w-full h-21 px-6 py-[18px] cursor-pointer"
         >
             <div className="flex flex-1 items-center justify-between">
-                <Checkbox checked={isSelected} handleChange={onClick} />
-                <div className="h-full flex flex-col justify-between">
-                    <p>{title}</p>
-                    <p className="font-normal text-sm text-ms-grey leading-6">
-                        {description}
-                    </p>
+                <div className="flex gap-x-6 items-center">
+                    <Checkbox checked={isSelected} handleChange={onClick} />
+                    <div className="h-full flex flex-col justify-between">
+                        <p>{title}</p>
+                        <p className="font-normal text-sm text-ms-grey leading-6">
+                            {description}
+                        </p>
+                    </div>
                 </div>
 
                 <div>

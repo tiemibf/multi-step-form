@@ -1,6 +1,6 @@
 interface ICheckboxProps {
     checked: boolean;
-    handleChange: () => void;
+    handleChange: () => void | React.MouseEventHandler<HTMLDivElement>;
 }
 
 export const Checkbox = ({ checked, handleChange }: ICheckboxProps) => {

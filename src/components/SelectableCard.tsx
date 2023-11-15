@@ -1,6 +1,6 @@
 interface ISelectableCardProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    isSelected?: boolean;
+    isSelected?: boolean | (() => boolean);
 }
 
 export const SelectableCard = ({
@@ -11,10 +11,10 @@ export const SelectableCard = ({
 }: ISelectableCardProps) => {
     return (
         <div
-            className={`border border-ms-light-grey rounded-lg hover:border-ms-purple hover:border-2 ${
+            className={`border-box border rounded-lg hover:border-ms-purple hover:border-2  ${
                 isSelected
                     ? "bg-ms-lightest-grey border-ms-purple border-2"
-                    : ""
+                    : "border-ms-light-grey"
             } ${className}`}
             {...props}
         >
