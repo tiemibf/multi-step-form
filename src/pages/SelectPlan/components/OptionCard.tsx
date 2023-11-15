@@ -1,4 +1,5 @@
-import { Icon } from "./Icon";
+import { SelectableCard } from "@/components/SelectableCard";
+import { Icon } from "../../../components/Icon";
 
 interface IOptionCardProps {
     icon: JSX.Element;
@@ -29,13 +30,10 @@ export const OptionCard = ({
     const priceLabel = lookUpTable[selectedPlanOption];
 
     return (
-        <div
-            className={`border border-ms-light-grey rounded-lg w-[138px] h-40 px-4 py-5 hover:border-ms-purple hover:border-2 ${
-                isSelected
-                    ? "bg-ms-lightest-grey border-ms-purple border-2"
-                    : ""
-            }`}
+        <SelectableCard
+            isSelected={isSelected}
             onClick={onClick}
+            className="w-[138px] h-40 px-4 py-5"
         >
             <div className="h-full flex flex-col justify-between">
                 <Icon color={color} icon={icon} />
@@ -52,6 +50,6 @@ export const OptionCard = ({
                     )}
                 </div>
             </div>
-        </div>
+        </SelectableCard>
     );
 };

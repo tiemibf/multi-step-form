@@ -1,6 +1,7 @@
 "use client";
 
 import { FormProvider } from "@/context/FormContext";
+import { AddOnsPage } from "@/pages/AddOns/AddOns";
 import { PersonalInfoPage } from "@/pages/PersonalInfo/PersonalInfo";
 import { SelectPlanPage } from "@/pages/SelectPlan/SelectPlan";
 import { useState } from "react";
@@ -26,7 +27,8 @@ const stepsInfo: StepsInfo[] = [
     },
     {
         count: 3,
-        name: "Add-Ons"
+        name: "Add-Ons",
+        content: <AddOnsPage />
     },
     {
         count: 4,

@@ -4,4 +4,5 @@ export interface IForm {
   phone?: string;
   planOption?: string;
   paymentFrequency?: "monthly" | "yearly";
+  addOns?: string[]
 }
