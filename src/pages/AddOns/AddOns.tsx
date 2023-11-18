@@ -1,5 +1,3 @@
-"use client";
-
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
 import { AddOn, IForm } from "@/types/types";
@@ -35,16 +33,11 @@ const addOnOptions = [
 
 export const AddOnsPage = () => {
     const { formData, setFormData } = useContext(FormContext);
-    const { paymentFrequency } = formData;
 
     const handleOptionCardClick = (addOn: AddOn) => {
         const currentAddOns = formData.addOns ? [...formData.addOns] : [];
-        const isAddOnSelected = currentAddOns.some(
-            (curr) => curr.title === addOn.title
-        );
-        const newAddOns = isAddOnSelected
-            ? currentAddOns.filter((selectedAddOn) => selectedAddOn !== addOn)
-            : [...currentAddOns, addOn];
+        const isAddOnSelected = currentAddOns.some((curr) => curr.title === addOn.title);
+        const newAddOns = isAddOnSelected ? currentAddOns.filter((selectedAddOn) => selectedAddOn !== addOn) : [...currentAddOns, addOn];
 
         setFormData((formData: IForm) => {
             return {
@@ -57,24 +50,15 @@ export const AddOnsPage = () => {
     return (
         <div className="w-full">
             <div className="page-title flex-1 w-full mb-8">
-                <PageTitle
-                    title="Pick add-ons"
-                    subtitle="Add-ons help enhance your gaming experience."
-                />
+                <PageTitle title="Pick add-ons" subtitle="Add-ons help enhance your gaming experience." />
             </div>
             <div className="flex flex-col gap-y-4">
-                {addOnOptions.map((option) => (
+                {addOnOptions.map((addOn) => (
                     <OptionCard
-                        title={option.title}
-                        description={option.description}
-                        price={option.price[paymentFrequency]}
-                        isSelected={
-                            formData.addOns?.some(
-                                (curr) => curr.title === option.title
-                            ) as boolean
-                        }
-                        onClick={() => handleOptionCardClick(option)}
-                        key={option.title}
+                        addOn={addOn}
+                        isSelected={formData.addOns?.some((curr) => curr.title === addOn.title) as boolean}
+                        onClick={() => handleOptionCardClick(addOn)}
+                        key={addOn.title}
                     />
                 ))}
             </div>

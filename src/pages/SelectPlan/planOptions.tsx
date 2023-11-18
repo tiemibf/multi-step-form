@@ -2,7 +2,7 @@ import { AdvancedIcon } from "@/assets/AdvancedIcon";
 import { ArcadeIcon } from "@/assets/ArcadeIcon";
 import { ProIcon } from "@/assets/ProIcon";
 
-interface IPlanOptions {
+export interface IPlanOptions {
     icon: JSX.Element;
     color: string;
     price: {
