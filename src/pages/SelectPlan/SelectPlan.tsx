@@ -1,56 +1,33 @@
-"use client";
-
-import { AdvancedIcon } from "@/assets/AdvancedIcon";
-import { ArcadeIcon } from "@/assets/ArcadeIcon";
-import { ProIcon } from "@/assets/ProIcon";
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
 import { OptionCard } from "@/pages/SelectPlan/components/OptionCard";
 import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { PlanToggle } from "./components/PlanToggle";
+import { planOptions } from "./planOptions";
 
-const planOptions = [
-    {
-        icon: <ArcadeIcon />,
-        color: "#FFAF7E",
-        priceMonthly: "$9",
-        priceYearly: "$90",
-        title: "Arcade",
-        benefits: "2 months free"
-    },
-    {
-        icon: <AdvancedIcon />,
-        color: "#F9818E",
-        priceMonthly: "$12",
-        priceYearly: "$120",
-        title: "Advanced",
-        benefits: "2 months free"
-    },
-    {
-        icon: <ProIcon />,
-        color: "#483EFF",
-        priceMonthly: "$15",
-        priceYearly: "$150",
-        title: "Pro",
-        benefits: "2 months free"
-    }
-];
 export const SelectPlanPage = () => {
     const [toggleChecked, setToggleChecked] = useState(false);
     const { formData, setFormData } = useContext(FormContext);
+    const { paymentFrequency } = formData;
     const selectedPlanOption = toggleChecked ? "yearly" : "monthly";
 
-    const handleOptionCardClick = (planOption: string) => {
-        setFormData({ ...formData, planOption: planOption });
+    const handleOptionCardClick = (planOption: string, planPrice: string) => {
+        setFormData({ ...formData, planOption, planPrice });
     };
 
     const handleToggleChange = () => {
         setToggleChecked(!toggleChecked);
         const newSelectedPlanOption = !toggleChecked ? "yearly" : "monthly";
+        const plan = planOptions.filter(
+            (option) => option.title === formData.planOption
+        );
+
+        planOptions.find((plan) => plan.title === formData.planOption);
         setFormData({
             ...formData,
-            paymentFrequency: newSelectedPlanOption
+            paymentFrequency: newSelectedPlanOption,
+            planPrice: plan[0].price[newSelectedPlanOption]
         });
     };
 
@@ -63,17 +40,22 @@ export const SelectPlanPage = () => {
                 />
             </div>
             <div className="flex space-x-4 mb-8">
-                {planOptions.map((planOption) => (
+                {planOptions.map((plan) => (
                     <OptionCard
-                        color={planOption.color}
-                        icon={planOption.icon}
-                        price={planOption.priceMonthly}
-                        title={planOption.title}
+                        color={plan.color}
+                        icon={plan.icon}
+                        price={plan.price[paymentFrequency]}
+                        title={plan.title}
                         key={uuidv4()}
                         selectedPlanOption={selectedPlanOption}
-                        benefits={planOption.benefits}
-                        isSelected={formData.planOption === planOption.title}
-                        onClick={() => handleOptionCardClick(planOption.title)}
+                        benefits={plan.benefits}
+                        isSelected={formData.planOption === plan.title}
+                        onClick={() =>
+                            handleOptionCardClick(
+                                plan.title,
+                                plan.price[paymentFrequency]
+                            )
+                        }
                     />
                 ))}
             </div>
