@@ -3,7 +3,12 @@ export interface IForm {
   email: string;
   phone: string;
   planOption: string;
-  planPrice: string;
+  planPrice: number;
   paymentFrequency: "monthly" | "yearly";
-  addOns?: string[]
+  addOns?: AddOn[]
+}
+
+export interface AddOn {
+  title: string;
+  price: { monthly: number; yearly: number }
 }

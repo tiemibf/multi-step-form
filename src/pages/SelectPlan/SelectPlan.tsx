@@ -26,7 +26,7 @@ export const SelectPlanPage = () => {
         setFormData({
             ...formData,
             paymentFrequency: newSelectedPlanOption,
-            planPrice: plan[0].price?.[newSelectedPlanOption]
+            planPrice: plan?.[0]?.price?.[newSelectedPlanOption]
         });
     };
 

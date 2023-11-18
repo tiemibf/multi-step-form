@@ -1,13 +1,20 @@
 import { Checkbox } from "@/components/Checkbox";
 import { SelectableCard } from "@/components/SelectableCard";
+import { FormContext } from "@/context/FormContext";
+import { useContext } from "react";
 
 interface IOptionCardProps {
     title: string;
     description: string;
-    price: string;
+    price: number;
     isSelected: boolean;
     onClick: () => void;
 }
+
+const lookUpTable = {
+    monthly: "mo",
+    yearly: "yr"
+};
 
 export const OptionCard = ({
     title,
@@ -16,6 +23,10 @@ export const OptionCard = ({
     isSelected,
     onClick
 }: IOptionCardProps) => {
+    const { formData } = useContext(FormContext);
+    const { paymentFrequency } = formData;
+    const priceLabel = lookUpTable[paymentFrequency];
+
     return (
         <SelectableCard
             isSelected={isSelected}
@@ -35,7 +46,7 @@ export const OptionCard = ({
 
                 <div>
                     <p className="font-normal text-sm text-ms-purple">
-                        {price}
+                        +${price}/{priceLabel}
                     </p>
                 </div>
             </div>
