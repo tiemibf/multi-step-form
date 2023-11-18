@@ -6,8 +6,8 @@ interface IPlanOptions {
     icon: JSX.Element;
     color: string;
     price: {
-        monthly: string;
-        yearly: string;
+        monthly: number;
+        yearly: number;
     };
     title: string;
     benefits: string;
@@ -18,8 +18,8 @@ export const planOptions: IPlanOptions[] = [
         icon: <ArcadeIcon />,
         color: "#FFAF7E",
         price: {
-            monthly: "$9",
-            yearly: "$90"
+            monthly: 9,
+            yearly: 90
         },
         title: "Arcade",
         benefits: "2 months free"
@@ -28,8 +28,8 @@ export const planOptions: IPlanOptions[] = [
         icon: <AdvancedIcon />,
         color: "#F9818E",
         price: {
-            monthly: "$12",
-            yearly: "$120"
+            monthly: 12,
+            yearly: 120
         },
         title: "Advanced",
         benefits: "2 months free"
@@ -38,8 +38,8 @@ export const planOptions: IPlanOptions[] = [
         icon: <ProIcon />,
         color: "#483EFF",
         price: {
-            monthly: "$15",
-            yearly: "$150"
+            monthly: 15,
+            yearly: 150
         },
         title: "Pro",
         benefits: "2 months free"

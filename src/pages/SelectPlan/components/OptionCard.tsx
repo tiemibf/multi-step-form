@@ -1,4 +1,6 @@
 import { SelectableCard } from "@/components/SelectableCard";
+import { FormContext } from "@/context/FormContext";
+import { useContext } from "react";
 import { Icon } from "../../../components/Icon";
 
 interface IOptionCardProps {
@@ -6,7 +8,6 @@ interface IOptionCardProps {
     color: string;
     price: string;
     title: string;
-    selectedPlanOption: "monthly" | "yearly";
     benefits?: string;
     isSelected: boolean;
     onClick: () => void;
@@ -22,12 +23,13 @@ export const OptionCard = ({
     color,
     price,
     title,
-    selectedPlanOption,
     isSelected,
     benefits,
     onClick
 }: IOptionCardProps) => {
-    const priceLabel = lookUpTable[selectedPlanOption];
+    const { formData } = useContext(FormContext);
+    const { paymentFrequency } = formData;
+    const priceLabel = lookUpTable[paymentFrequency];
 
     return (
         <SelectableCard
@@ -41,9 +43,9 @@ export const OptionCard = ({
                 <div className="footer">
                     <p>{title}</p>
                     <p className="font-normal text-[15px] whitespace-no-wrap text-ms-grey leading-7 ">
-                        {price}/{priceLabel}
+                        ${price}/{priceLabel}
                     </p>
-                    {selectedPlanOption === "yearly" && (
+                    {paymentFrequency === "yearly" && (
                         <p className="font-normal text-xs leading-5">
                             {benefits}
                         </p>

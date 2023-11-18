@@ -17,7 +17,7 @@ const defaultValues = {
     email: "",
     phone: "",
     planOption: "",
-    planPrice: "",
+    planPrice: 0,
     paymentFrequency: "monthly",
     addOns: []
 };

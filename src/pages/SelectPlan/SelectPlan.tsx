@@ -10,9 +10,8 @@ export const SelectPlanPage = () => {
     const [toggleChecked, setToggleChecked] = useState(false);
     const { formData, setFormData } = useContext(FormContext);
     const { paymentFrequency } = formData;
-    const selectedPlanOption = toggleChecked ? "yearly" : "monthly";
 
-    const handleOptionCardClick = (planOption: string, planPrice: string) => {
+    const handleOptionCardClick = (planOption: string, planPrice: number) => {
         setFormData({ ...formData, planOption, planPrice });
     };
 
@@ -27,7 +26,7 @@ export const SelectPlanPage = () => {
         setFormData({
             ...formData,
             paymentFrequency: newSelectedPlanOption,
-            planPrice: plan[0].price[newSelectedPlanOption]
+            planPrice: plan[0].price?.[newSelectedPlanOption]
         });
     };
 
@@ -44,10 +43,9 @@ export const SelectPlanPage = () => {
                     <OptionCard
                         color={plan.color}
                         icon={plan.icon}
-                        price={plan.price[paymentFrequency]}
+                        price={`${plan.price[paymentFrequency]}`}
                         title={plan.title}
                         key={uuidv4()}
-                        selectedPlanOption={selectedPlanOption}
                         benefits={plan.benefits}
                         isSelected={formData.planOption === plan.title}
                         onClick={() =>
