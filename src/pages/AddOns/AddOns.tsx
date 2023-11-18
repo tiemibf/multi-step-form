@@ -29,6 +29,10 @@ const addOnOptions = [
 
 export const AddOnsPage = () => {
     const { formData, setFormData } = useContext(FormContext);
+    const priceOption =
+        formData.paymentFrequency === "yearly" ? "priceYearly" : "priceMonthly";
+
+    console.log(formData);
 
     const handleOptionCardClick = (addOn: string) => {
         const currentAddOns = formData.addOns ? [...formData.addOns] : [];
@@ -58,7 +62,7 @@ export const AddOnsPage = () => {
                     <OptionCard
                         title={option.title}
                         description={option.description}
-                        price={option.priceMonthly}
+                        price={option[priceOption]}
                         isSelected={
                             formData.addOns?.includes(option.title) ?? false
                         }
