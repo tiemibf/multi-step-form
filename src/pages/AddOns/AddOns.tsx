@@ -32,8 +32,6 @@ export const AddOnsPage = () => {
     const priceOption =
         formData.paymentFrequency === "yearly" ? "priceYearly" : "priceMonthly";
 
-    console.log(formData);
-
     const handleOptionCardClick = (addOn: string) => {
         const currentAddOns = formData.addOns ? [...formData.addOns] : [];
         const isAddOnSelected = currentAddOns.includes(addOn);

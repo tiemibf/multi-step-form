@@ -20,7 +20,7 @@ export const OptionCard = ({
         <SelectableCard
             isSelected={isSelected}
             onClick={onClick}
-            className="w-full h-21 px-6 py-[18px] cursor-pointer"
+            className="w-[450px] h-21 px-6 py-[18px] cursor-pointer"
         >
             <div className="flex flex-1 items-center justify-between">
                 <div className="flex gap-x-6 items-center">
