@@ -12,18 +12,24 @@ interface IFormProviderProps {
     setFormData: Dispatch<SetStateAction<IForm>>;
 }
 
+const defaultValues = {
+    name: "",
+    email: "",
+    phone: "",
+    planOption: "",
+    planPrice: "",
+    paymentFrequency: "monthly",
+    addOns: []
+};
+
 const FormContext = createContext<IFormProviderProps>({
-    formData: {},
+    formData: { ...(defaultValues as IForm) },
     setFormData: () => null
 });
 
 const FormProvider = ({ children }: { children: ReactNode }) => {
     const [formData, setFormData] = useState<IForm>({
-        name: "",
-        email: "",
-        phone: "",
-        paymentFrequency: "monthly",
-        addOns: []
+        ...(defaultValues as IForm)
     });
 
     return (
