@@ -1,8 +1,6 @@
-"use client";
-
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
-import { IForm } from "@/types/types";
+import { AddOn, IForm } from "@/types/types";
 import { useContext } from "react";
 import { OptionCard } from "./components/OptionCard";
 
@@ -10,32 +8,36 @@ const addOnOptions = [
     {
         title: "Online service",
         description: "Access to multiplayer games",
-        priceMonthly: "+$1/mo",
-        priceYearly: "+$10/yr"
+        price: {
+            monthly: 1,
+            yearly: 10
+        }
     },
     {
         title: "Larger storage",
         description: "Extra 1TB of cloud save",
-        priceMonthly: "+$2/mo",
-        priceYearly: "+$20/yr"
+        price: {
+            monthly: 2,
+            yearly: 20
+        }
     },
     {
         title: "Customizable profile",
         description: "Custom theme on your profile",
-        priceMonthly: "+$2/mo",
-        priceYearly: "+$20/yr"
+        price: {
+            monthly: 2,
+            yearly: 20
+        }
     }
 ];
 
 export const AddOnsPage = () => {
     const { formData, setFormData } = useContext(FormContext);
 
-    const handleOptionCardClick = (addOn: string) => {
+    const handleOptionCardClick = (addOn: AddOn) => {
         const currentAddOns = formData.addOns ? [...formData.addOns] : [];
-        const isAddOnSelected = currentAddOns.includes(addOn);
-        const newAddOns = isAddOnSelected
-            ? currentAddOns.filter((selectedAddOn) => selectedAddOn !== addOn)
-            : [...currentAddOns, addOn];
+        const isAddOnSelected = currentAddOns.some((curr) => curr.title === addOn.title);
+        const newAddOns = isAddOnSelected ? currentAddOns.filter((selectedAddOn) => selectedAddOn !== addOn) : [...currentAddOns, addOn];
 
         setFormData((formData: IForm) => {
             return {
@@ -48,22 +50,15 @@ export const AddOnsPage = () => {
     return (
         <div className="w-full">
             <div className="page-title flex-1 w-full mb-8">
-                <PageTitle
-                    title="Pick add-ons"
-                    subtitle="Add-ons help enhance your gaming experience."
-                />
+                <PageTitle title="Pick add-ons" subtitle="Add-ons help enhance your gaming experience." />
             </div>
             <div className="flex flex-col gap-y-4">
-                {addOnOptions.map((option) => (
+                {addOnOptions.map((addOn) => (
                     <OptionCard
-                        title={option.title}
-                        description={option.description}
-                        price={option.priceMonthly}
-                        isSelected={
-                            formData.addOns?.includes(option.title) ?? false
-                        }
-                        onClick={() => handleOptionCardClick(option.title)}
-                        key={option.title}
+                        addOn={addOn}
+                        isSelected={formData.addOns?.some((curr) => curr.title === addOn.title) as boolean}
+                        onClick={() => handleOptionCardClick(addOn)}
+                        key={addOn.title}
                     />
                 ))}
             </div>
