@@ -60,15 +60,7 @@ export const Stepper = () => {
                     {stepsInfo?.map(
                         (step) =>
                             step.enabled && (
-                                <Step
-                                    stepCount={step.count}
-                                    stepName={step.name}
-                                    key={step.count}
-                                    isActive={
-                                        currentStep == step.count ?? false
-                                    }
-                                    onClick={() => setCurrentStep(step.count)}
-                                />
+                            <Step stepCount={step.count} stepName={step.name} key={step.count} isActive={currentStep == step.count ?? false} />
                             )
                     )}
                 </div>
