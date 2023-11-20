@@ -7,9 +7,14 @@ import { PlanToggle } from "./components/PlanToggle";
 import { planOptions } from "./planOptions";
 
 export const SelectPlanPage = () => {
-    const [toggleChecked, setToggleChecked] = useState(false);
+    const toggleOptions = {
+        yearly: true,
+        monthly: false
+    };
     const { formData, setFormData } = useContext(FormContext);
     const { paymentFrequency } = formData;
+    const toggleInitialValue = toggleOptions[paymentFrequency] as boolean;
+    const [toggleChecked, setToggleChecked] = useState(toggleInitialValue);
 
     const handleOptionCardClick = (planOption: string, planPrice: number) => {
         setFormData({ ...formData, planOption, planPrice });
@@ -17,14 +22,14 @@ export const SelectPlanPage = () => {
 
     const handleToggleChange = () => {
         setToggleChecked(!toggleChecked);
-        const newSelectedPlanOption = !toggleChecked ? "yearly" : "monthly";
-        const plan = planOptions.filter((option) => option.title === formData.planOption);
+        const newSelectedPaymentOption = !toggleChecked ? "yearly" : "monthly";
+        const selectedPlan = planOptions.filter((option) => option.title === formData.planOption);
 
         planOptions.find((plan) => plan.title === formData.planOption);
         setFormData({
             ...formData,
-            paymentFrequency: newSelectedPlanOption,
-            planPrice: plan?.[0]?.price?.[newSelectedPlanOption]
+            paymentFrequency: newSelectedPaymentOption,
+            planPrice: selectedPlan?.[0]?.price?.[newSelectedPaymentOption]
         });
     };
 
