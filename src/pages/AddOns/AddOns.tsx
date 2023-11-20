@@ -1,3 +1,4 @@
+import { ControlButtons } from "@/components/ControlButtons";
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
 import { AddOn, IForm } from "@/types/types";
@@ -62,6 +63,7 @@ export const AddOnsPage = () => {
                     />
                 ))}
             </div>
+            <ControlButtons />
         </div>
     );
 };

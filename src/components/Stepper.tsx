@@ -1,13 +1,10 @@
-"use client";
-
-import { FormProvider } from "@/context/FormContext";
+import { FormContext } from "@/context/FormContext";
 import { AddOnsPage } from "@/pages/AddOns/AddOns";
 import { PersonalInfoPage } from "@/pages/PersonalInfo/PersonalInfo";
 import { SelectPlanPage } from "@/pages/SelectPlan/SelectPlan";
 import { Summary } from "@/pages/Summary/Summary";
 import { ThankYouPage } from "@/pages/ThankYouPage/ThankYouPage";
-import { useState } from "react";
-import { ControlButtons } from "./ControlButtons";
+import { useContext } from "react";
 import { Step } from "./Step";
 
 export type StepsInfo = {
@@ -51,40 +48,21 @@ const stepsInfo: StepsInfo[] = [
 ];
 
 export const Stepper = () => {
-    const [currentStep, setCurrentStep] = useState(1);
+    const { currentStep } = useContext(FormContext);
 
     return (
-        <FormProvider>
-            <div className="absolute w-[inherit] height-[inherit] flex">
-                <div className="py-10 px-8 w-[30%]">
-                    {stepsInfo?.map(
-                        (step) =>
-                            step.enabled && (
-                                <Step
-                                    stepCount={step.count}
-                                    stepName={step.name}
-                                    key={step.count}
-                                    isActive={
-                                        currentStep == step.count ?? false
-                                    }
-                                    onClick={() => setCurrentStep(step.count)}
-                                />
-                            )
-                    )}
-                </div>
-                <div className="w-[70%] pt-10 pb-8 px-[100px] content-between flex flex-col">
-                    {stepsInfo?.map(
-                        (step) =>
-                            step.count === currentStep && (
-                                <div key={step.count}>{step.content}</div>
-                            )
-                    )}
-                    <ControlButtons
-                        currentStep={currentStep}
-                        setCurrentStep={setCurrentStep}
-                    />
-                </div>
+        <div className="absolute w-[inherit] height-[inherit] flex">
+            <div className="py-10 px-8 w-[30%]">
+                {stepsInfo?.map(
+                    (step) =>
+                        step.enabled && (
+                            <Step stepCount={step.count} stepName={step.name} key={step.count} isActive={currentStep == step.count ?? false} />
+                        )
+                )}
             </div>
-        </FormProvider>
+            <div className="w-[70%] pt-10 pb-8 px-[100px] content-between flex flex-col">
+                {stepsInfo?.map((step) => step.count === currentStep && <div key={step.count}>{step.content}</div>)}
+            </div>
+        </div>
     );
 };
