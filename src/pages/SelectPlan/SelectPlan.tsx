@@ -1,3 +1,4 @@
+import { ControlButtons } from "@/components/ControlButtons";
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
 import { OptionCard } from "@/pages/SelectPlan/components/OptionCard";
@@ -49,6 +50,7 @@ export const SelectPlanPage = () => {
                 ))}
             </div>
             <PlanToggle checked={toggleChecked} handleChange={handleToggleChange} />
+            <ControlButtons />
         </div>
     );
 };

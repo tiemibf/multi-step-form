@@ -1,12 +1,13 @@
-import { Dispatch, SetStateAction } from "react";
+import { FormContext } from "@/context/FormContext";
+import { useContext } from "react";
 import { Button } from "./Button";
 
 interface IProps {
-    currentStep: number;
-    setCurrentStep: Dispatch<SetStateAction<number>>;
+    handleNextStepButton?: () => void;
 }
 
-export const ControlButtons = ({ currentStep, setCurrentStep }: IProps) => {
+export const ControlButtons = ({ handleNextStepButton }: IProps) => {
+    const { currentStep, setCurrentStep } = useContext(FormContext);
     const isFirstStep = currentStep === 1;
     const isSummaryStep = currentStep === 4;
     const thankYouPage = currentStep === 5;
@@ -16,16 +17,9 @@ export const ControlButtons = ({ currentStep, setCurrentStep }: IProps) => {
     if (thankYouPage) return;
 
     return (
-        <div
-            className={`flex items-center mt-16 ${
-                isFirstStep ? "justify-end" : "justify-between"
-            }`}
-        >
+        <div className={`flex items-center mt-16 ${isFirstStep ? "justify-end" : "justify-between"}`}>
             {!isFirstStep && (
-                <p
-                    className="font-medium text-base text-ms-grey cursor-pointer hover:text-ms-denim"
-                    onClick={goToPreviousStep}
-                >
+                <p className="font-medium text-base text-ms-grey cursor-pointer hover:text-ms-denim" onClick={goToPreviousStep}>
                     Go Back
                 </p>
             )}
@@ -34,7 +28,7 @@ export const ControlButtons = ({ currentStep, setCurrentStep }: IProps) => {
                     Confirm
                 </Button>
             ) : (
-                <Button onClick={goToNextStep}>Next Step</Button>
+                <Button onClick={handleNextStepButton || goToNextStep}>Next Step</Button>
             )}
         </div>
     );

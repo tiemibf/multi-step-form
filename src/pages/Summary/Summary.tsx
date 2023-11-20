@@ -1,3 +1,4 @@
+import { ControlButtons } from "@/components/ControlButtons";
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
 import { capitalizeFirstLetter } from "@/utils/helpers";
@@ -47,6 +48,7 @@ export const Summary = () => {
                     </div>
                 </div>
             </div>
+            <ControlButtons />
         </>
     );
 };
