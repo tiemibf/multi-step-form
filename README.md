@@ -1,34 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Multi Step Form
 
-## Getting Started
+Project of a form to a service subscription, divided in multiple sections. The design was provided by Frontend Mentor.
 
-First, run the development server:
+![image](https://github.com/tiemibf/multi-step-form/assets/89952484/3a9ef439-6061-4e6b-9ccb-6b7bad04cff3)
+![image](https://github.com/tiemibf/multi-step-form/assets/89952484/52f4c0ca-7fb5-4497-8c04-c55da3de4fb3)
+![image](https://github.com/tiemibf/multi-step-form/assets/89952484/512a4524-b95e-479d-a8d1-2905be73f057)
+![image](https://github.com/tiemibf/multi-step-form/assets/89952484/17f32265-4cd0-4d3b-aec9-68db7f61c6e9)
+![image](https://github.com/tiemibf/multi-step-form/assets/89952484/5f6da72c-a672-4656-80b3-2c73d178005b)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- HTML
+- CSS
+- React
+- Typescript
+- Tailwind CSS
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To this project, I've decided not to use any lib to handle form, to practice doing so purely with React and TS; 
 
-## Learn More
+## Install
 
-To learn more about Next.js, take a look at the following resources:
+### Install dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ ``$ yarn install`` or ``$ npm install``
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+ ### Run the project
+``$ yarn dev``
