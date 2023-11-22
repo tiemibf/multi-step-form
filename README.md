@@ -15,6 +15,7 @@ Project of a form to a service subscription, divided in multiple sections.
 - React
 - Typescript
 - Tailwind CSS
+- NextJS
 
 To this project, I've decided not to use any lib to handle form, to practice doing so purely with React and TS; 
 
