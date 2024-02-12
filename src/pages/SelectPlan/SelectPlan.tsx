@@ -1,17 +1,17 @@
 import { ControlButtons } from "@/components/ControlButtons";
 import { PageTitle } from "@/components/PageTitle";
+import { PlanOptionCard } from "@/components/PlanOptionCard";
 import { FormContext } from "@/context/FormContext";
-import { OptionCard } from "@/pages/SelectPlan/components/OptionCard";
 import { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { PlanToggle } from "./components/PlanToggle";
-import { planOptions } from "./planOptions";
+import { PlanToggle } from "../../components/PlanToggle";
+import { planOptions } from "../../components/planOptions";
 
 interface IErrors {
     planOption?: boolean;
 }
 
-export const SelectPlanPage = () => {
+const SelectPlanPage = () => {
     const toggleOptions = {
         yearly: true,
         monthly: false
@@ -62,7 +62,7 @@ export const SelectPlanPage = () => {
             <p className="text-sm font-normal text-ms-red mb-1">{errors.planOption && "Select at least one plan."} </p>
             <div className="flex space-x-4 mb-8">
                 {planOptions.map((plan) => (
-                    <OptionCard
+                    <PlanOptionCard
                         plan={plan}
                         key={uuidv4()}
                         isSelected={formData.planOption === plan.title}
@@ -76,3 +76,5 @@ export const SelectPlanPage = () => {
         </div>
     );
 };
+
+export default SelectPlanPage;

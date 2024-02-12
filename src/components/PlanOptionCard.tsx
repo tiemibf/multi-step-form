@@ -1,8 +1,8 @@
 import { SelectableCard } from "@/components/SelectableCard";
 import { FormContext } from "@/context/FormContext";
 import { useContext } from "react";
-import { Icon } from "../../../components/Icon";
-import { IPlanOptions } from "../planOptions";
+import { Icon } from "./Icon";
+import { IPlanOptions } from "./planOptions";
 
 interface IOptionCardProps {
     plan: IPlanOptions;
@@ -17,7 +17,7 @@ const lookUpTable = {
     yearly: "yr"
 };
 
-export const OptionCard = ({ plan: { icon, color, title, price }, isSelected, benefits, error, onClick }: IOptionCardProps) => {
+export const PlanOptionCard = ({ plan: { icon, color, title, price }, isSelected, benefits, error, onClick }: IOptionCardProps) => {
     const { formData } = useContext(FormContext);
     const { paymentFrequency } = formData;
     const priceLabel = lookUpTable[paymentFrequency];

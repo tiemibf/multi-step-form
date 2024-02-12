@@ -1,4 +1,4 @@
-import { IToggleProps } from "@/pages/SelectPlan/components/PlanToggle";
+import { IToggleProps } from "@/components/PlanToggle";
 import { Switch } from "@radix-ui/react-switch";
 
 export const Toggle = ({ checked, handleChange, ...props }: IToggleProps) => {
@@ -11,9 +11,7 @@ export const Toggle = ({ checked, handleChange, ...props }: IToggleProps) => {
             >
                 <span
                     className={`${
-                        checked
-                            ? "translate-x-5 bg-white"
-                            : "translate-x-[2px] bg-white"
+                        checked ? "translate-x-5 bg-white" : "translate-x-[2px] bg-white"
                     } pointer-events-none inline-block h-[12px] w-[12px] rounded-full transform transition-transform ease-in-out duration-200`}
                 />
             </Switch>

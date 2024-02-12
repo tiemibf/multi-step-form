@@ -1,9 +1,9 @@
 import { FormContext } from "@/context/FormContext";
-import { AddOnsPage } from "@/pages/AddOns/AddOns";
-import { PersonalInfoPage } from "@/pages/PersonalInfo/PersonalInfo";
-import { SelectPlanPage } from "@/pages/SelectPlan/SelectPlan";
-import { Summary } from "@/pages/Summary/Summary";
-import { ThankYouPage } from "@/pages/ThankYouPage/ThankYouPage";
+import AddOnsPage from "@/pages/AddOns/AddOns";
+import PersonalInfoPage from "@/pages/PersonalInfo/PersonalInfo";
+import SelectPlanPage from "@/pages/SelectPlan/SelectPlan";
+import Summary from "@/pages/Summary/Summary";
+import ThankYouPage from "@/pages/ThankYouPage/ThankYouPage";
 import { useContext } from "react";
 import { Step } from "./Step";
 
