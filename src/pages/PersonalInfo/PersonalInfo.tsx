@@ -10,7 +10,7 @@ interface IFormErrors {
     phone: boolean;
 }
 
-export const PersonalInfoPage = () => {
+const PersonalInfoPage = () => {
     const { formData, setFormData, setCurrentStep } = useContext(FormContext);
     const [errors, setErrors] = useState<IFormErrors>({
         name: false,
@@ -80,3 +80,5 @@ export const PersonalInfoPage = () => {
         </div>
     );
 };
+
+export default PersonalInfoPage;

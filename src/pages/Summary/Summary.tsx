@@ -4,7 +4,7 @@ import { FormContext } from "@/context/FormContext";
 import { capitalizeFirstLetter } from "@/utils/helpers";
 import { useContext } from "react";
 
-export const Summary = () => {
+const Summary = () => {
     const { formData } = useContext(FormContext);
     const { planOption, planPrice, paymentFrequency, addOns } = formData;
     const payFreqAbbr = paymentFrequency === "monthly" ? "mo" : "yr";
@@ -52,3 +52,5 @@ export const Summary = () => {
         </>
     );
 };
+
+export default Summary;

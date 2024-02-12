@@ -15,7 +15,7 @@ const lookUpTable = {
     yearly: "yr"
 };
 
-export const OptionCard = ({ addOn: { title, description, price }, isSelected, onClick }: IOptionCardProps) => {
+export const AddOnOptionCard = ({ addOn: { title, description, price }, isSelected, onClick }: IOptionCardProps) => {
     const { formData } = useContext(FormContext);
     const { paymentFrequency } = formData;
     const priceLabel = lookUpTable[paymentFrequency];

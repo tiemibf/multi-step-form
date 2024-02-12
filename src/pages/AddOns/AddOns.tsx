@@ -1,9 +1,9 @@
+import { AddOnOptionCard } from "@/components/AddOnOptionCard";
 import { ControlButtons } from "@/components/ControlButtons";
 import { PageTitle } from "@/components/PageTitle";
 import { FormContext } from "@/context/FormContext";
 import { AddOn, IForm } from "@/types/types";
 import { useContext } from "react";
-import { OptionCard } from "./components/OptionCard";
 
 const addOnOptions = [
     {
@@ -32,7 +32,7 @@ const addOnOptions = [
     }
 ];
 
-export const AddOnsPage = () => {
+const AddOnsPage = () => {
     const { formData, setFormData } = useContext(FormContext);
 
     const handleOptionCardClick = (addOn: AddOn) => {
@@ -55,7 +55,7 @@ export const AddOnsPage = () => {
             </div>
             <div className="flex flex-col gap-y-4">
                 {addOnOptions.map((addOn) => (
-                    <OptionCard
+                    <AddOnOptionCard
                         addOn={addOn}
                         isSelected={formData.addOns?.some((curr) => curr.title === addOn.title) as boolean}
                         onClick={() => handleOptionCardClick(addOn)}
@@ -67,3 +67,5 @@ export const AddOnsPage = () => {
         </div>
     );
 };
+
+export default AddOnsPage;
