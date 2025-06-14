@@ -29,14 +29,26 @@ const PersonalInfoPage = () => {
         phone: formData?.phone
     };
 
+    const isValidEmail = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const isValidPhone = (phone: string) => {
+        const phoneRegex = /^\+?[\d\s\-()]{10,}$/;
+        return phoneRegex.test(phone);
+    };
+
     const handleNextStepButton = () => {
         const isFormValid = Object.values(requiredFieldsValues).every((value) => value);
+        const isEmailValid = formData?.email ? isValidEmail(formData.email) : false;
+        const isPhoneValid = formData?.phone ? isValidPhone(formData.phone) : false;
 
-        if (!isFormValid) {
+        if (!isFormValid || !isEmailValid || !isPhoneValid) {
             setErrors({
                 name: !requiredFieldsValues.name,
-                email: !requiredFieldsValues.email,
-                phone: !requiredFieldsValues.phone
+                email: !requiredFieldsValues.email || !isEmailValid,
+                phone: !requiredFieldsValues.phone || !isPhoneValid
             });
 
             return;
@@ -65,7 +77,10 @@ const PersonalInfoPage = () => {
                 value={formData?.email}
                 onChange={handleChange}
                 placeholder="e.g. stephenking@lorem.com"
-                error={{ hasError: errors.email, message: "This field is required" }}
+                error={{
+                    hasError: errors.email,
+                    message: !formData?.email ? "This field is required" : "Enter a valid email"
+                }}
             />
             <Input
                 label="Phone Number"
@@ -73,7 +88,10 @@ const PersonalInfoPage = () => {
                 value={formData?.phone}
                 onChange={handleChange}
                 placeholder="e.g. +1 234 567 890"
-                error={{ hasError: errors.phone, message: "This field is required" }}
+                error={{
+                    hasError: errors.phone,
+                    message: !formData?.phone ? "This field is required" : "Enter a valid phone number"
+                }}
             />
 
             <ControlButtons handleNextStepButton={handleNextStepButton} />
