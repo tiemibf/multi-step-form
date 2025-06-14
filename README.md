@@ -2,7 +2,7 @@
 
 Project of a form to a service subscription, divided in multiple sections.
 
-:video_game: [Check the deployed version.](https://dashing-cactus-b86113.netlify.app/)
+:video_game: [Check the deployed version.](https://multistep-form-tiemi.netlify.app/)
 
 ![image](https://github.com/tiemibf/multi-step-form/assets/89952484/3a9ef439-6061-4e6b-9ccb-6b7bad04cff3)
 ![image](https://github.com/tiemibf/multi-step-form/assets/89952484/05d0d336-d78c-40d8-8605-fb46bf30fb0e)
